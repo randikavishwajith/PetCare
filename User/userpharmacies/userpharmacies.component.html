@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-end serach">
+    <form class="form-inline my-1 my-lg-0">
+        <input #searchBox class="form-control mr-sm-1 input" type="text" placeholder="Senter City" id="searchbar" aria-label="Search" name="name" [(ngModel)]="City">
+        <button class="btn btn-outline-warning mr-sm-1"  (click)="findBycity()" type="submit">Search</button>
+        <button class="btn btn-outline-success mr-sm-1"  (click)="All()" type="submit">All</button>
+      </form>
+</div>
+<div class="main">
+    <div class=" row mt-4">
+        <div class="col-md-4 mb-3" *ngFor="let Pharmacy of Pharmacies">
+            <mat-card class="card">
+                <mat-card-header>
+                            <mat-card-title>{{Pharmacy.pharmacyname}}</mat-card-title>
+                            <mat-card-subtitle>{{Pharmacy.pname}}</mat-card-subtitle>
+                        <div >
+                            <h3 class="card-subtitle mb-2 ml-5 pl-5 text-muted">{{Pharmacy.date | date:'longDate'}}</h3>
+                            <mat-card-subtitle class="card-subtitle mb-2 ml-5 pl-5" >{{Pharmacy.city}}</mat-card-subtitle>
+                        </div>
+                        
+                </mat-card-header>
+                <img mat-card-image src="{{Pharmacy.filename}}" style="height: 200px;" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                <table>
+                    <tr class="col-md-12">
+                        <td class="col-md-6">
+                            <mat-card-title>{{Pharmacy.decision}}</mat-card-title>
+                        </td>
+                        <td class="col-md-6 pr-5">
+                            <mat-card-subtitle>{{Pharmacy.contact}}</mat-card-subtitle>
+                        </td>
+                    </tr>
+                </table> 
+            </mat-card-content>  
+            <div class=" input-group">    
+                  <div class="col-md-6 m-0 text-success">Open Time</div>   
+                  <div class="col-md-6 text-danger"> Close Time</div>
+            </div>  
+            <div class=" input-group">
+                <div class="col-md-6 m-0 text-success"> {{Pharmacy.stime}}</div>
+                 <div class="col-md-6 text-danger">  {{Pharmacy.ctime}}</div>
+           </div>               
+              </mat-card>
+        </div>
+    </div>
+</div>
+
+

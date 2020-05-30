@@ -1,0 +1,24 @@
+<div class="main">
+    <div class="row mt-4">
+        <div class="col-md-4 mb-3" *ngFor="let post of Posts">
+
+            <mat-card class="card">
+                <mat-card-header>
+                  <div mat-card-avatar>
+                    <img src="{{post.filename}}" class="rounded-circle hoverable " style="width: 50px; height: 50px;" >
+                  </div>
+                        <mat-card-title>{{post.breed}}</mat-card-title>
+                        <mat-card-subtitle>{{post.subbreed}}</mat-card-subtitle>
+                      <div class=" mb-7 col-md-6">
+                        <mat-card-subtitle>{{post.contact}}</mat-card-subtitle>
+                      </div>
+                </mat-card-header>
+                <img mat-card-image src="{{post.filename}}" style="height: 200px;" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                  <p>{{post.description}}</p>
+                </mat-card-content>
+                <mat-card-title>Call Now</mat-card-title>
+              </mat-card>
+        </div>
+    </div>
+</div>

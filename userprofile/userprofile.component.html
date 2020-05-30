@@ -1,0 +1,174 @@
+
+<div class="col-md-12 d-flex align-items-start">
+ 
+    <div class="col-md-6 profile align-items">
+    <div class="d-flex flex-column shadow p-3 mb-5 bg-white rounded">
+        <div class="shadow rounded Header">
+            <div class="text-white heardertext">
+                <h1>Update Profile</h1>
+            </div>
+        </div>
+        <div class="p-4 mb-5 col-md-12">
+            <div [hidden]="!action" class="alert alert-success">
+                <strong>{{message}}</strong>
+            </div>
+            <div class="container">
+                    <div class="col-md-10">
+                        <form  [formGroup]="UpdateForm" novalidate (ngSubmit)="onSubmit()">
+                            <div class="form-group" [hidden]="true">
+                               <input type="text" class="form-control" formControlName="id"/>
+                            </div>
+                                                  <!--Name-->
+                                                  <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"> <i class="fa fa-user-circle fa-lg"></i> </span>
+                                                    </div>
+                                                    <input [class.is-invalid]="Name.invalid && Name.touched" type="text" class="form-control" formControlName="name" required
+                                                            placeholder="Username.." />  
+                                                    </div>   
+                                                    <div *ngIf="Name.invalid && Name.touched">
+                                                        <small *ngIf="Name.errors.required" class="text-danger">Name is Required</small>
+                                                        <small *ngIf="Name.errors.minlength" class="text-danger">Name must be atleast 3 characters </small>
+                                                        <small *ngIf="Name.errors.forbiddenName" class="text-danger">{{Name.errors.forbiddenName.value}} username not Allowed </small>
+                                                    </div>                       
+                                                </div>
+                    
+                                                <!--Email-->
+                                            <div class="form-group col-md-12">
+                                                <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <i class="fa fa-envelope fa-lg"></i> </span>
+                                                </div>
+                                                <input  [class.is-invalid]="Email.invalid && Email.touched" type="email" class="form-control" formControlName="email" required
+                                                        placeholder="Email.." />
+                                                </div>
+                                                <div *ngIf="Email.invalid && Email.touched">
+                                                    <small *ngIf="Email.errors.required" class="text-danger">Email is Required</small>
+                                                    <small *ngIf="Email.errors.pattern" class="text-danger">Email must have @ symble</small>
+                                                </div> 
+                                            </div>
+                                             <!--contact No-->
+                                         <div class="form-group col-md-12">
+                                            <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-volume-control-phone fa-lg"></i>
+                                                </span>
+                                            </div>
+                                            <input [class.is-invalid]="contact.invalid && contact.touched" type="text" class="form-control" id="contact" name="contact"
+                                                    placeholder="Contact Number.." formControlName="contact" required />
+                                            </div>
+                                            <div *ngIf="contact.errors && contact.touched">
+                                                <small *ngIf="contact.errors.required" class="text-danger">contact number is Required</small>
+                                                <small *ngIf="contact.errors.pattern" class="text-danger">digits Only </small>
+                                                <small *ngIf="contact.errors.minlength" class="text-danger">contact must be atleast 10 digits </small>            
+                                            </div>  
+                                        </div>
+                                <!--Submit Button-->
+                                <div class="form-group" style="padding-left: 200px;">
+                                    <button class="btn shadow rounded" [disabled]="!UpdateForm.valid">Update<i
+                                            class="fa fa-arrow-circle-o-up fa-lg fa-fw"></i></button>
+                                </div>
+                        </form><!-- ends register form -->
+                    </div><!-- ends col-6 -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-4 align-items">
+    <div class="password col-md-12 d-flex flex-column shadow p-3 mb-5 bg-white rounded">
+        <div class="container col-md-10">
+            <div class="shadow rounded Header">
+                <div class="text-white heardertext">
+                    <h1>Update Passwprd</h1>
+                </div>
+            </div>
+            <div [hidden]="!Action" class="alert alert-success">
+                <strong>{{ Message }}</strong>
+              </div>
+          <div class="row p-4">
+            <div class="col-md-12">
+              <form
+                [formGroup]="OtherRegisterForm"
+                novalidate
+                (ngSubmit)="OnSubmit()"
+              >
+                <fieldset>
+                    <div class="form-group" [hidden]="true">
+                        <input type="text" id="id" class="form-control" formControlName="id"/>
+                     </div>
+                  <!--Password-->
+                  <div class="form-group col-md-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text border-warning bg-warning">
+                          <i class="fa fa-lock fa-lg"></i>
+                        </span>
+                      </div>
+                      <input
+                        [class.is-invalid]="Password.invalid && Password.touched"
+                        required
+                        type="password"
+                        class="form-control border border-warning"
+                        formControlName="password"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div *ngIf="Password.invalid && Password.touched">
+                      <small *ngIf="Password.errors.required" class="text-danger"
+                        >Password is Required</small
+                      >
+                      <small *ngIf="Password.errors.minlength" class="text-danger"
+                        >Password must be 8 characters long, we need another
+                        <strong>
+                          {{
+                            Password.errors.minlength.requiredLength -
+                              Password.errors.minlength.actualLength
+                          }}
+                        </strong>
+                        characters</small
+                      >
+                    </div>
+                  </div>
+    
+                  <!--Confirm Password-->
+                  <div class="form-group col-md-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text border-warning bg-warning">
+                          <i class="fa fa-lock fa-lg"></i>
+                        </span>
+                      </div>
+                      <input
+                        required
+                        [class.is-invalid]="OtherRegisterForm.errors?.misMatch"
+                        type="password"
+                        class="form-control border border-warning"
+                        formControlName="confirmpassword"
+                        placeholder="Confirm Password"
+                      />
+                    </div>
+                    <small
+                      *ngIf="OtherRegisterForm.errors?.misMatch"
+                      class="text-danger"
+                      >Confirm password do not match</small
+                    >
+                  </div>
+                  <!--Submit Button-->
+                  <div class="form-group" style="padding-left: 20px;">
+                    <button
+                      class="btn btn-outline-danger  shadow-lg rounded"
+                      [disabled]="!OtherRegisterForm.valid">
+                      Update<i class="fa fa-arrow-circle-o-up fa-lg fa-fw"></i>
+                    </button>
+                  </div>
+                </fieldset>
+              </form>
+              <!-- ends register form -->
+            </div>
+            <!-- ends col-6 -->
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>

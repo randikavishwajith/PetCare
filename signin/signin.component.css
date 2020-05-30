@@ -1,0 +1,30 @@
+
+.singin{
+    padding-top: 30px;
+    padding-left: 3cm;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.btn {
+    margin-left: 300px;
+    width: 4cm;
+}
+
+.container{
+    padding: 2%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    padding-left: 5cm;
+    /*background-image: url(/assets/image/regback.svg);*/
+}
+.alert{
+    text-align: center;
+    font-size: large;
+}
+.boxsh{
+    margin-left: 300px;
+    width: 200px;
+}
+button:hover{
+    font-weight: bolder;
+    color:rgb(221, 172, 46);
+}

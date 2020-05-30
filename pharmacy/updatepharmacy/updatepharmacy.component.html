@@ -1,0 +1,57 @@
+<div class="close">
+    <button (click)="close()"><i class="fa fa-window-close"></i></button>
+  </div>
+  <div class="form">
+            <div class="shadow rounded Header">
+                <div class="text-white text-center">
+                    <h1>Add medicine</h1>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div [hidden]="!action" class="alert alert-success">
+                    <strong>{{message}}</strong>
+                </div>
+                <div class="container">
+                        <div class="col-md-10">  
+                            <form [formGroup]="UpdateForm"
+                            novalidate (ngSubmit)="OnSubmit()">
+                            <input matInput [hidden]="true" formControlName="id" required>
+                            <mat-form-field>
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker"  value="picker"formControlName="date" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="date.invalid">{{getErrorMessagedate()}}</mat-error>
+                              </mat-form-field>
+                
+                                    <mat-form-field>
+                                      <mat-label>Open/Close</mat-label>
+                                      <mat-select
+                                        [class.is-invalid]="decision.invalid && decision.touched"
+                                        class="form-control"
+                                        formControlName="decision"
+                                        required
+                                      >
+                                        <mat-option value="Open">Open</mat-option>
+                                        <mat-option value="Close">Close</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  <table class="example-full-width" cellspacing="0">
+                                    <tr>
+                                  <td>
+                                      <mat-label class="text-success">Start time</mat-label>
+                                      <ngb-timepicker formControlName="stime"></ngb-timepicker>
+                                  </td>
+                                  <td class="pl-5">
+                                    <mat-label class="text-danger">Close time</mat-label>
+                                    <ngb-timepicker formControlName="ctime"></ngb-timepicker>
+                                </td>
+                                </tr>
+                              </table>  
+                                      <button mat-stroked-button color="warn" >Update</button>
+                            </form><!-- ends register form -->
+                        </div><!-- ends col-6 -->
+                </div>
+
+            </div>
+  </div>

@@ -1,0 +1,14 @@
+.card{
+    margin: 3%;
+}
+.Header{
+    margin: 3%;
+    margin-left: 200px;
+    height: 100px;
+    background-color: #a4e7a4;
+}
+h1{
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: 30px;
+}

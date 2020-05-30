@@ -1,0 +1,113 @@
+<div class="singin col-md-12 d-flex justify-content-center">
+    <div *ngIf="action" [hidden]="!action" class="alert alert-success">
+        <strong>{{message}}</strong>
+    </div>
+
+<div class="singin justify-content col-md-8 shadow p-3 mb-5 bg-white rounded">
+    <div class="container col-md-10 ">
+        <div class="row d-flex flex-column">
+            <div class="shadow rounded Header">
+                <div class="text-white text-center">
+                    <h1>Clinics</h1>
+                </div>
+            </div>
+            <div class="col-md-10 formbox">
+                <form [formGroup]="ClinicForm">
+                    <table class="example-full-width" cellspacing="0">
+                      <tr>
+                      <td>
+                        <mat-form-field class="example-full-width">
+                        <mat-label>Clinic name</mat-label>
+                        <input matInput formControlName="clinicname" required>
+                        <mat-error *ngIf="clinicname.invalid">{{getErrorMessage()}}</mat-error>
+                      </mat-form-field>
+                    </td>
+                      <td>
+                        <mat-form-field class="example-full-width" hidden="true">
+                        <mat-label>Your name</mat-label>
+                        <input matInput  formControlName="vname">
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field>
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker"  value="picker"formControlName="date" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="date.invalid">{{getErrorMessage()}}</mat-error>
+                      </mat-form-field>
+                    </td>
+                    </tr>
+                  </table>
+                  
+                    <table class="example-full-width" cellspacing="0">
+                      <tr>
+                      <td>
+                        <mat-form-field class="example-full-width">
+                        <mat-label>City</mat-label>
+                        <input matInput formControlName="city" required placeholder="Ex. San Francisco">
+                        <mat-error *ngIf="city.invalid">{{getErrorMessage()}}</mat-error>
+                      </mat-form-field>
+                    </td>
+                      <td>
+                        <mat-form-field class="example-full-width">
+                        <mat-label>Contact Number</mat-label>
+                        <input matInput type="number" #postalCode formControlName="contact" required minlength="10" maxlength="12" placeholder="Ex. +947414345500" >
+                        <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="contact.invalid">{{getErrorMessage()}}</mat-error>
+                      </mat-form-field>
+                    </td>
+                    </tr>
+                  </table> 
+                  <table class="example-full-width" cellspacing="0">
+                    <tr>
+                      <td>
+                        <mat-form-field>
+                          <mat-label>Open/Close</mat-label>
+                          <mat-select
+                            [class.is-invalid]="decision.invalid && decision.touched"
+                            class="form-control"
+                            formControlName="decision"
+                            required
+                          >
+                            <mat-option value="Open">Open</mat-option>
+                            <mat-option value="Close">Close</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                      </td>
+                      <td>
+                          <mat-label class="text-success">Start time</mat-label>
+                          <ngb-timepicker formControlName="stime"></ngb-timepicker>
+                      </td>
+                      <td>
+                        <mat-label class="text-danger">Close time</mat-label>
+                        <ngb-timepicker formControlName="ctime"></ngb-timepicker>
+                    </td>
+                    </tr>
+                  </table>               
+                    <!--Image-->
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text "> <i class="fa fa-picture-o fa-lg"></i>
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                            <input class="form-control"  type="file" accept="image/*" (change)="onFileChanged($event)">
+                        </div>
+                        <div class="img ">
+                        <img [src]="imageSrc" style="height: 300px; width:500px" class="border border-success shadow rounded">
+                    </div>
+                    </div>
+                   </div>
+            <!--Button-->
+            <div class="form-group" style="float: left; padding-left: 5cm;">
+                <button type="submit" (click)="onUpload(ClinicForm)" class="btn btn-outline-success shadow rounded">Post<i
+                        class="fa fa-arrow-circle-o-up fa-lg fa-fw"></i></button>
+            </div>
+            </form>
+        </div>
+      </div>
+   </div>
+</div>

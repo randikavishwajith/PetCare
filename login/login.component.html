@@ -1,0 +1,58 @@
+<div class="close">
+  <button (click)="close()"><i class="fa fa-window-close"></i></button>
+</div>
+<div class="login">  
+  <div class="heading">
+    <img src="assets/image/image.svg" height="200" width="200" class="border border-warning rounded-circle" >
+    <h1>
+      Welcome      
+    </h1>
+    <h4 class="text-danger">
+        {{user}}
+    </h4>
+    <ul [hidden]="true">
+      <li></li>
+    </ul>
+  </div>    
+  <div class="container col-md-12">
+      <div class="row">
+          <div class="col-md-12">
+              <form [formGroup]="UserLoginForm" novalidate (ngSubmit)="onSubmit()">
+                    <!--Email-->
+                    <div class="form-group col-md-12">
+                      <div class="input-group">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text border border-warning bg-warning"> <i class="fa fa-user-circle fa-lg"></i> </span>
+                      </div>
+                      <input [class.is-invalid]="email.invalid && email.touched" type="text" class="form-control border border-warning" formControlName="email" required
+                              placeholder="Email.." />  
+                      </div>   
+                      <div *ngIf="email.invalid && email.touched">
+                          <small *ngIf="email.errors.required" class="text-danger">Email is Required</small>
+                      </div>  
+                  </div>
+                    <!--Password-->
+                    <div class="form-group col-md-12">
+                      <div class="input-group">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text border border-warning bg-warning"> <i class="fa fa-lock fa-lg"></i> </span>
+                      </div>
+                      <input  [class.is-invalid]="password.invalid && password.touched" required type="password" class="form-control border border-warning" formControlName="password"
+                              placeholder="Password" />
+                          </div>
+                          <div *ngIf="password.invalid && password.touched">
+                              <small *ngIf="password.errors.required" class="text-danger">Password is Required</small>
+                          </div> 
+                  </div>
+                  <div class="form-group" style="float: left;">
+                    <button [disabled]="!UserLoginForm.valid" class="btn btn-success">Login</button>
+                </div>
+                      <div class="form-group" style="float: right;">
+                        <label [style.color]="'blue'">New? Sign-in here--></label>
+                        <button type="button" class="btn btn-outline-warning my-1 my-sm-0" (click)="SignIn()">Sign-in</button>
+                      </div>
+              </form><!-- ends register form -->
+          </div><!-- ends col-6 -->
+      </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.close{
+    float: right;
+}
+.form{
+    height: 500px;
+    width: 400px;
+}
+.Header{
+    padding-top: 20px;
+    margin-bottom: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 75px;
+    background-color: #a4e7a4;
+}
+.example-full-width {
+    width: 100%;
+  }

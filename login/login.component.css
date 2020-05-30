@@ -1,0 +1,25 @@
+
+body{
+    padding-left: 15cm;
+}
+
+.login{
+    width: 500px;
+    height: 600px;
+}
+.heading{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: 100;
+}
+.container {
+    padding-left: 1cm;
+}
+.btn{
+    width: 3cm;
+}
+.close{
+    float: right;
+}
+

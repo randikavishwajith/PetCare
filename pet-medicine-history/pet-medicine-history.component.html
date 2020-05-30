@@ -1,0 +1,32 @@
+<div class="body">
+  <div class="close">
+    <button class="btn btn-outline-danger"(click)="close()"><i class="fa fa-window-close"></i></button>
+  </div>
+
+  <mat-card *ngIf="details">
+    <mat-card-header >
+      <div mat-card-avatar >
+        <img src="{{details.filename}}" class="rounded-circle hoverable " style="width: 75px; height: 75px;" >
+    </div>
+    <div class="pl-4 pb-1 pt-0 mt-0">
+    <mat-card-title class="text-warning md-3  mt-4"> <h1>{{details.petname}}</h1></mat-card-title> 
+  </div>
+  </mat-card-header>
+</mat-card>
+
+
+<div class="justify-content col-md-7">
+  <div class="card col-md-10 mt-2" *ngFor="let histry of histys">
+      <div class="card-body">
+          <div class="input-group">
+              <div><h1 class="card-title">{{histry.petname}}</h1></div>
+              <div><h3 class="card-subtitle mb-2 ml-5 text-muted">Dr.{{histry.dname}}</h3></div>
+              <div><h3 class="card-subtitle mb-2 ml-5 pl-5 text-muted">{{histry.date | date:'longDate'}}</h3></div>
+          </div>
+          <div class=" input-group">
+              <div class="col-md-6 m-0"> <p class="card-text">{{histry.reason}}</p></div>
+               <div class="col-md-6"> <p class="card-text">{{histry.medicines}}</p></div>
+         </div>            
+      </div>
+  </div>
+</div>

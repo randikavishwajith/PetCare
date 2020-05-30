@@ -1,0 +1,37 @@
+
+.singin{
+    padding-top: 20px;
+}
+.formbox{
+    padding-top: 20px;
+}
+.Header{
+    padding-top: 20px;
+    margin-bottom: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 100px;
+    background-color: #a4e7a4;
+}
+h1{
+    font-weight: bold;
+    font-size: 30px;
+}
+.img{
+    padding-top: 10px;
+}
+input{
+    border: 1px solid #a4e7a4;
+}
+span{
+    background-color: #a4e7a4;
+    border: 1px solid #a4e7a4;
+}
+.btn{
+    color: #a4e7a4;
+    border: 1px solid #a4e7a4;
+}
+.btn:visited, .btn:hover{
+    color: azure;
+    background-color: #a4e7a4;
+}

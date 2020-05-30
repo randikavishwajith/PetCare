@@ -1,0 +1,148 @@
+<div class="singin col-md-12 ">
+    <div *ngIf="action" [hidden]="!action" class="alert alert-success">
+        <strong>{{message}}</strong>
+    </div>
+
+<div class="singin col-md-12 shadow p-3 mb-5 bg-white rounded">
+    <div class="container col-md-10 ">
+        <div class="row d-flex flex-column">
+            <div class="shadow rounded Header">
+                <div class="text-white text-center">
+                    <h1>Sell Pets</h1>
+                </div>
+            </div>
+            <div class="col-md-10 formbox">
+                <form [formGroup]="PetSellForm">
+                    <!--user-->
+                   <!-- <div class="form-group" [hidden]="true">
+                        <input type="text" class="form-control" name="uuid" formControlName="uuid">
+                    </div>-->
+                    <!--Breed-->
+                    <div class="form-group input-group col-md-12">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-paw fa-lg"></i>
+                          </span>
+                        </div>
+                        <div class="col-md-1">
+                          <mat-form-field>
+                            <mat-label>Breed</mat-label>
+                            <mat-select
+                              [class.is-invalid]="breed.invalid && breed.touched"
+                              class="form-control"
+                              formControlName="breed"
+                              required
+                            >
+                              <mat-option value="Dog">Dog</mat-option>
+                              <mat-option value="Cat">Cat</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div *ngIf="breed.invalid && breed.touched">
+                          <small *ngIf="breed.errors.required" class="text-danger"
+                            >Breed is Required</small
+                          >
+                        </div>
+                      </div>
+                      <!--subBreed-->
+                    <div class="form-group input-group col-md-12">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-paw fa-lg"></i>
+                          </span>
+                        </div>
+                        <div class="col-md-1">
+                          <mat-form-field>
+                            <mat-label>Breed</mat-label>
+                            <mat-select [class.is-invalid]="subbreed.invalid && subbreed.touched"
+                            class="form-control"
+                            formControlName="subbreed"
+                            required>
+                              <mat-optgroup  label="Dog">
+                              <mat-option value="Labrador">Labrador</mat-option>
+                              <mat-option value="German Shepherd">German Shepherd</mat-option>
+                              <mat-option value="Siberian Husky">Siberian Husky</mat-option>
+                              <mat-option value="Bulldog">Bulldog</mat-option>
+                              <mat-option value="Pomeranian">Pomeranian</mat-option>
+                              <mat-option value="Golden Retriever">Golden Retriever</mat-option>
+                              <mat-option value="Pug">Pug</mat-option>
+                              <mat-option value="shih tzu">shih tzu</mat-option>
+                              </mat-optgroup>
+                              <mat-optgroup  label="Cat">
+                                <mat-option value="Persian cat">Persian cat</mat-option>
+                                <mat-option value="Bengal cat">Bengal cat</mat-option>
+                                <mat-option value="British Shorthair">British Shorthair</mat-option>
+                                <mat-option value="Siamese cat">Siamese cat</mat-option>
+                                <mat-option value="Sphynx cat">Sphynx cat</mat-option>
+                                <mat-option value="Ragdoll">Ragdoll</mat-option>
+                                <mat-option value="Scottish Fold">Scottish Fold</mat-option>
+                                </mat-optgroup>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div *ngIf="subbreed.invalid && breed.touched">
+                          <small *ngIf="subbreed.errors.required" class="text-danger"
+                            >Breed is Required</small
+                          >
+                        </div>
+                      </div>
+                     <!--contact No-->
+                     <div class="form-group col-md-12">
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text "> <i class="fa fa-volume-control-phone fa-lg"></i>
+                            </span>
+                        </div>
+                        <input [class.is-invalid]="contact.invalid && contact.touched" type="text" class="form-control" id="contact" name="contact"
+                                placeholder="Contact Number.." formControlName="contact" required />
+                        </div>
+                        <div *ngIf="contact.errors && contact.touched">
+                            <small *ngIf="contact.errors.required" class="text-danger">contact number is Required</small>
+                            <small *ngIf="contact.errors.pattern" class="text-danger">digits Only </small>
+                            <small *ngIf="contact.errors.minlength" class="text-danger">contact must be atleast 10 digits </small>            
+                        </div>  
+                    </div>
+
+                    <!--Description-->
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-comments-o fa-lg"></i>
+                                </span>
+                            </div>
+                                <textarea [class.is-invalid]="description.invalid && description.touched" class="form-control"  id="description" name="description" formControlName="description"
+                                placeholder="Description.." required></textarea>
+                        </div>
+                        <div *ngIf="description.invalid && description.touched">
+                            <small *ngIf="description.errors.required" class="text-danger">Description is Required</small>
+                        </div>
+                    </div>
+                   
+                    <!--Image-->
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text "> <i class="fa fa-picture-o fa-lg"></i>
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                            <input class="form-control"  type="file" accept="image/*" (change)="onFileChanged($event)">
+                        </div>
+                        <div class="img ">
+                        <img [src]="imageSrc" style="height: 300px; width:500px" class="border border-success shadow rounded">
+                    </div>
+                    </div>
+                   </div>
+            <!--Button-->
+            <div class="form-group" style="float: left; padding-left: 5cm;">
+                <button type="submit" [disabled]="!PetSellForm.valid"(click)="onUpload(PetSellForm)" class="btn btn-outline-success shadow rounded">Post<i
+                        class="fa fa-arrow-circle-o-up fa-lg fa-fw"></i></button>
+            </div>
+            </form>
+        </div>
+      </div>
+   </div>
+</div>
+
+
+

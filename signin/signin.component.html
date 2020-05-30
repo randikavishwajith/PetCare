@@ -1,0 +1,404 @@
+<mat-tab-group>
+  <mat-tab label="Sign-Up">
+    <div class="singin col-md-12">
+      <div [hidden]="!action" class="alert alert-success">
+        <strong>{{ Message }}</strong>
+      </div>
+      <div class="container col-md-10 border border-warning rounded ">
+          <h1 class="shadow p-3 rounded border border-warning text-center boxsh bg-warning text-white">Sign-Up</h1>
+        <div class="row">
+          <div class="col-md-10">
+            <form
+              [formGroup]="UserRegisterForm"
+              novalidate
+              (ngSubmit)="onSubmit()"
+            >
+              <!--Name-->
+              <div class="form-group col-md-12">
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border border-warning bg-warning">
+                      <i class="fa fa-user-circle fa-lg"></i>
+                    </span>
+                  </div>
+                  <input
+                    [class.is-invalid]="name.invalid && name.touched"
+                    type="text"
+                    class="form-control border border-warning"
+                    formControlName="name"
+                    required
+                    placeholder="Username.."
+                  />
+                </div>
+                <div *ngIf="name.invalid && name.touched">
+                  <small *ngIf="name.errors.required" class="text-danger"
+                    >Name is Required</small
+                  >
+                  <small *ngIf="name.errors.minlength" class="text-danger"
+                    >Name must be atleast 3 characters
+                  </small>
+                  <small *ngIf="name.errors.forbiddenName" class="text-danger"
+                    >{{ name.errors.forbiddenName.value }} username not Allowed
+                  </small>
+                </div>
+              </div>
+
+              <!--Role-->
+              <div class="form-group" [hidden]="true">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="role"
+                />
+              </div>
+
+              <!--Email-->
+              <div class="form-group col-md-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border-warning bg-warning">
+                      <i class="fa fa-envelope fa-lg"></i>
+                    </span>
+                  </div>
+                  <input
+                    [class.is-invalid]="email.invalid && email.touched"
+                    type="email"
+                    class="form-control border border-warning"
+                    formControlName="email"
+                    required
+                    placeholder="Email.."
+                  />
+                </div>
+                <div *ngIf="email.invalid && email.touched">
+                  <small *ngIf="email.errors.required" class="text-danger"
+                    >Email is Required</small
+                  >
+                  <small *ngIf="email.errors.pattern" class="text-danger"
+                    >Email must have @ symble</small
+                  >
+                </div>
+              </div>
+
+              <!--Password-->
+              <div class="form-group col-md-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border-warning bg-warning">
+                      <i class="fa fa-lock fa-lg"></i>
+                    </span>
+                  </div>
+                  <input
+                    [class.is-invalid]="password.invalid && password.touched"
+                    required
+                    type="password"
+                    class="form-control border border-warning"
+                    formControlName="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div *ngIf="password.invalid && password.touched">
+                  <small *ngIf="password.errors.required" class="text-danger"
+                    >Password is Required</small
+                  >
+                  <small *ngIf="password.errors.minlength" class="text-danger"
+                    >Password must be 8 characters long, we need another
+                    <strong>
+                      {{
+                        password.errors.minlength.requiredLength -
+                          password.errors.minlength.actualLength
+                      }}
+                    </strong>
+                    characters</small
+                  >
+                </div>
+              </div>
+
+              <!--Confirm Password-->
+              <div class="form-group col-md-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border-warning bg-warning">
+                      <i class="fa fa-lock fa-lg"></i>
+                    </span>
+                  </div>
+                  <input
+                    required
+                    [class.is-invalid]="UserRegisterForm.errors?.misMatch"
+                    type="password"
+                    class="form-control border border-warning"
+                    formControlName="confirmpassword"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+                <small
+                  *ngIf="UserRegisterForm.errors?.misMatch"
+                  class="text-danger"
+                  >Confirm password do not match</small
+                >
+              </div>
+
+              <!--ContactNo-->
+              <div class="form-group col-md-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border-warning bg-warning">
+                      <i class="fa fa-volume-control-phone fa-lg"></i>
+                    </span>
+                  </div>
+                  <input
+                    [class.is-invalid]="contact.invalid && contact.touched"
+                    type="text"
+                    class="form-control border border-warning"
+                    formControlName="contact"
+                    placeholder="Contact Number.."
+                    required
+                  />
+                </div>
+                <div *ngIf="contact.errors && contact.touched">
+                  <small *ngIf="contact.errors.required" class="text-danger"
+                    >contact number is Required</small
+                  >
+                  <small *ngIf="contact.errors.pattern" class="text-danger"
+                    >digits Only
+                  </small>
+                  <small *ngIf="contact.errors.minlength" class="text-danger"
+                    >contact must be atleast 10 digits
+                  </small>
+                </div>
+              </div>
+              <!--approvel-->
+              <div class="form-group" [hidden]="true">
+                <input
+                  type="radio"
+                  class="form-control"
+                  formControlName="approve"
+                />
+              </div>
+              <!--Button-->
+              <div class="form-group">
+                <button
+                  type="submit"
+                  [disabled]="!UserRegisterForm.valid"
+                  class="btn btn-outline-warning  shadow-lg p-3 mb-5  bg-white rounded"
+                >
+                  Sign-UP<i class="fa fa-arrow-circle-o-up fa-lg fa-fw"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Doctor & Pharmacy Sign-Up">
+    <div class="singin col-md-12 ">
+      
+      <div [hidden]="!action" class="alert alert-success">
+        <strong>{{ message }}</strong>
+      </div>
+      <div class="container col-md-10 border border-warning rounded ">
+        <h1 class="shadow p-3 rounded border border-warning text-center boxsh bg-warning text-white">Sign-Up</h1>
+        <div class="row">
+          <div class="col-md-10">
+            <form
+              [formGroup]="OtherRegisterForm"
+              novalidate
+              (ngSubmit)="OnSubmit()"
+            >
+              <fieldset>
+                <!--Name-->
+                <div class="form-group col-md-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text border-warning bg-warning">
+                        <i class="fa fa-user-circle fa-lg"></i>
+                      </span>
+                    </div>
+                    <input
+                      [class.is-invalid]="Name.invalid && Name.touched"
+                      type="text"
+                      class="form-control border border-warning"
+                      formControlName="name"
+                      required
+                      placeholder="Username.."
+                    />
+                  </div>
+                  <div *ngIf="Name.invalid && Name.touched">
+                    <small *ngIf="Name.errors.required" class="text-danger"
+                      >Name is Required</small
+                    >
+                    <small *ngIf="Name.errors.minlength" class="text-danger"
+                      >Name must be atleast 3 characters
+                    </small>
+                    <small *ngIf="Name.errors.forbiddenName" class="text-danger"
+                      >{{ Name.errors.forbiddenName.value }} username not
+                      Allowed
+                    </small>
+                  </div>
+                </div>
+                <!--Jobs-->
+                <div class="form-group input-group col-md-12">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border-warning bg-warning">
+                      <i class="fa fa-suitcase fa-lg"></i>
+                    </span>
+                  </div>
+                  <div class="col-md-1">
+                    <mat-form-field>
+                      <mat-label>Job</mat-label>
+                      <mat-select
+                        [class.is-invalid]="role.invalid && role.touched"
+                        class="form-control border border-warning"
+                        formControlName="role"
+                        required
+                      >
+                        <mat-option value="Veterinarian">Veterinarian</mat-option>
+                        <mat-option value="Pharmacy">Pharmacy</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div *ngIf="role.invalid && role.touched">
+                    <small *ngIf="role.errors.required" class="text-danger"
+                      >Job is Required</small
+                    >
+                  </div>
+                </div>
+                <!--Email-->
+                <div class="form-group col-md-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text border-warning bg-warning">
+                        <i class="fa fa-envelope fa-lg"></i>
+                      </span>
+                    </div>
+                    <input
+                      [class.is-invalid]="Email.invalid && Email.touched"
+                      type="email"
+                      class="form-control border border-warning"
+                      formControlName="email"
+                      required
+                      placeholder="Email.."
+                    />
+                  </div>
+                  <div *ngIf="Email.invalid && Email.touched">
+                    <small *ngIf="Email.errors.required" class="text-danger"
+                      >Email is Required</small
+                    >
+                    <small *ngIf="Email.errors.pattern" class="text-danger"
+                      >Email must have @ symble</small
+                    >
+                  </div>
+                </div>
+                <!--Password-->
+                <div class="form-group col-md-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text border-warning bg-warning">
+                        <i class="fa fa-lock fa-lg"></i>
+                      </span>
+                    </div>
+                    <input
+                      [class.is-invalid]="Password.invalid && Password.touched"
+                      required
+                      type="password"
+                      class="form-control border border-warning"
+                      formControlName="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div *ngIf="Password.invalid && Password.touched">
+                    <small *ngIf="Password.errors.required" class="text-danger"
+                      >Password is Required</small
+                    >
+                    <small *ngIf="Password.errors.minlength" class="text-danger"
+                      >Password must be 8 characters long, we need another
+                      <strong>
+                        {{
+                          Password.errors.minlength.requiredLength -
+                            Password.errors.minlength.actualLength
+                        }}
+                      </strong>
+                      characters</small
+                    >
+                  </div>
+                </div>
+
+                <!--Confirm Password-->
+                <div class="form-group col-md-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text border-warning bg-warning">
+                        <i class="fa fa-lock fa-lg"></i>
+                      </span>
+                    </div>
+                    <input
+                      required
+                      [class.is-invalid]="OtherRegisterForm.errors?.misMatch"
+                      type="password"
+                      class="form-control border border-warning"
+                      formControlName="confirmpassword"
+                      placeholder="Confirm Password"
+                    />
+                  </div>
+                  <small
+                    *ngIf="OtherRegisterForm.errors?.misMatch"
+                    class="text-danger"
+                    >Confirm password do not match</small
+                  >
+                </div>
+
+                <!--ContactNo-->
+                <div class="form-group col-md-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text border-warning bg-warning">
+                        <i class="fa fa-volume-control-phone fa-lg"></i>
+                      </span>
+                    </div>
+                    <input
+                      [class.is-invalid]="Contact.invalid && Contact.touched"
+                      type="text"
+                      class="form-control border border-warning"
+                      formControlName="contact"
+                      placeholder="Contact Number.."
+                      required
+                    />
+                  </div>
+                  <div *ngIf="Contact.invalid && Contact.touched">
+                    <small *ngIf="Contact.errors.required" class="text-danger"
+                      >contact number is Required</small
+                    >
+                    <small *ngIf="Contact.errors.pattern" class="text-danger"
+                      >digits Only
+                    </small>
+                    <small *ngIf="Contact.errors.minlength" class="text-danger"
+                      >contact must be atleast 10 digits
+                    </small>
+                  </div>
+                </div>
+                <!--approvel-->
+                <div class="form-group" [hidden]="true">
+                  <input
+                    type="radio"
+                    class="form-control"
+                    formControlName="approve"
+                  />
+                </div>
+                <!--Submit Button-->
+                <div class="form-group">
+                  <button
+                    class="btn btn-outline-warning  shadow-lg p-3 mb-5  bg-white rounded"
+                    [disabled]="!OtherRegisterForm.valid">
+                    Sign-UP<i class="fa fa-arrow-circle-o-up fa-lg fa-fw"></i>
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+            <!-- ends register form -->
+          </div>
+          <!-- ends col-6 -->
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

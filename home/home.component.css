@@ -1,0 +1,26 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.img-responsive{
+    margin: 0;
+    height: 500px;
+}
+#slider{
+    margin: 0;
+    height:500px;
+}
+.text{
+    padding-top:2cm;
+}
+.text:hover{
+    color:#e4e71b;
+}
+.card{
+    margin-left: 5%;
+}
+.sub{
+    width: 400px;
+    height: 250px;
+}
